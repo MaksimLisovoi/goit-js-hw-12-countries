@@ -1,3 +1,4 @@
+import notifications from './notification';
 import refs from './refs';
 import fetchCountries from './fetchCountries';
 import countryRender from '../templates/country-template.hbs';
@@ -7,17 +8,14 @@ const debounce = require('lodash.debounce');
 refs.inputRef.addEventListener(
   'input',
   debounce(e => {
-    console.log(e.target.value);
     const inputVal = e.target.value;
     fetchCountries(inputVal);
   }, 500),
 );
-console.log(refs);
 
 function renderCountries(array) {
-  console.log(array);
   if (array.length > 10) {
-    console.log(error);
+    notifications.onOverflowRespose();
   } else if (array.length === 1) {
     refs.listContainerRef.innerHTML = '';
     const countryTemplate = countryRender(array);
