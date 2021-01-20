@@ -6,7 +6,7 @@ function fetchCountries(searchQuery) {
   return fetch(url)
     .then(response => response.json())
     .then(d => renderCountries(d))
-    .catch(notifications.onError());
+    .catch(notifications.onError);
 }
 
 export default fetchCountries;
