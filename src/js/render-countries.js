@@ -3,12 +3,15 @@ import refs from './refs';
 import fetchCountries from './fetchCountries';
 import countryRender from '../templates/country-template.hbs';
 import countryRenderList from '../templates/country-template-list.hbs';
-
-const debounce = require('lodash.debounce');
+import debounce from 'lodash.debounce';
 refs.inputRef.addEventListener(
   'input',
   debounce(e => {
     const inputVal = e.target.value;
+    refs.listContainerRef.innerHTML = '';
+    if (!inputVal) {
+      return;
+    }
     fetchCountries(inputVal);
   }, 500),
 );
